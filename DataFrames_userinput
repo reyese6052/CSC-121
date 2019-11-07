@@ -1,0 +1,41 @@
+"""
+students are to create a program that allows user to add student names and scores, 
+the program is to also allow defining the subject the grades are being entered for. 
+The entered information is to be stored in a DataFrame.
+"""
+import numpy as np
+import pandas as pd
+
+idx=0
+test_idx = []
+
+another = "y"
+scores_dict = {}
+
+data={"Test Name":[test_idx], "Student Name":[scores_dict.keys], "Test Score":[scores_dict.values]}
+#graph=pd.DataFrame(scores_dict, index=[test_idx])
+
+
+#4. Ask user how many tests are the grades for? To be used as indices for grades
+#  entered later
+
+idx = int(input("How many tests are you entering grades for? "))
+#index = int(index)
+
+for _ in range(idx):
+    #statement below appends value entered to end of list
+        test = input("Enter the first test #"+str(_)+": ") 
+        test_idx.append(test)
+
+while another.lower() == "y":
+    student = input("Enter student name: ")
+    st2 = scores_dict.setdefault(student,[]) 
+    for i in range(len(test_idx)):
+        score = input("Enter student score for {}: ".format(test_idx[i]))
+        #scores_dict[student].append(score)
+        scores_dict.update({student:[score]})
+    another = input("Would you like to enter another student? (y/n) ")
+    graph=pd.DataFrame(data=[[test_idx,st2,scores_dict]],columns=["Test Name", "Student Name", "Test Score"], index=[test_idx])    
+    scores_df=pd.DataFrame(graph)
+else:
+    print(scores_df)
